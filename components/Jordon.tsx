@@ -13,7 +13,7 @@ const Jordon = () => {
       <div className="flex flex-wrap mt-[35px] items-center justify-center ">
         <BackgroundGradient className="rounded-[22px] max-w-sm p-8 sm:p-10 bg-shivansh ">
           <Image
-            src={`/vp.jpg`}
+            src={`/av.jpg`}
             alt="Dr. Virendra Pathak"
             height="350"
             width="400"
@@ -50,12 +50,12 @@ const Jordon = () => {
             and nurturing a startup culture among students and faculty.
           </p>
           <button className="rounded-full pl-4 pr-4 py-1 text-white flex items-center space-x-1 bg-black mt-4 text-s font-bold dark:bg-zinc-800">
-            <span>Chairman, IIC LKO </span>
+            <span>Chairman, IIC IET LKO </span>
           </button>
         </BackgroundGradient>
         <BackgroundGradient className="rounded-[22px] max-w-sm p-4 sm:p-10 bg-shivansh">
           <Image
-            src={`/av.jpg`}
+            src={`/vp.jpg`}
             alt="Dr. Anurag Verma"
             height="400"
             width="400"
