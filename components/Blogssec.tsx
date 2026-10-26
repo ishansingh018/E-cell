@@ -7,7 +7,7 @@ import { PinContainer } from "./ui/Pin";
 
 const Blogssec = () => {
   return (
-    <div className="my-[150px] " id="#recentprojects" >
+    <div className="my-[150px]" id="recentprojects">
       <h1 className="heading mb-[60px] ">
         Read Our Recent <span className="text-purple">Blogs</span>
       </h1>
