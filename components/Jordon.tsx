@@ -42,7 +42,7 @@ const FlipCard = ({
 
   return (
     <div
-      className="relative w-[320px] h-[420px] cursor-pointer group"
+      className="relative w-[320px] h-[430px] cursor-pointer group"
       style={{ perspective: "1200px" }}
       onClick={() => setIsFlipped(!isFlipped)}
     >
@@ -54,34 +54,124 @@ const FlipCard = ({
       >
         {/* ===== FRONT FACE ===== */}
         <div
-          className="absolute inset-0 rounded-[22px] overflow-hidden"
+          className="absolute inset-0 rounded-[24px] overflow-hidden"
           style={{ backfaceVisibility: "hidden" }}
         >
-          {/* Animated gradient border */}
-          <div className="absolute inset-0 rounded-[22px] p-[2px]">
-            <div
-              className="absolute inset-0 rounded-[22px] opacity-60 group-hover:opacity-100 blur-xl transition-opacity duration-500"
-              style={{
-                background:
-                  "radial-gradient(circle farthest-side at 0 100%, #00ccb1, transparent), radial-gradient(circle farthest-side at 100% 0, #7b61ff, transparent), radial-gradient(circle farthest-side at 100% 100%, #ffc414, transparent), radial-gradient(circle farthest-side at 0 0, #1ca0fb, #141316)",
-              }}
-            />
-            <div
-              className="absolute inset-0 rounded-[22px]"
-              style={{
-                background:
-                  "radial-gradient(circle farthest-side at 0 100%, #00ccb1, transparent), radial-gradient(circle farthest-side at 100% 0, #7b61ff, transparent), radial-gradient(circle farthest-side at 100% 100%, #ffc414, transparent), radial-gradient(circle farthest-side at 0 0, #1ca0fb, #141316)",
-              }}
-            />
-          </div>
+          {/* Subtle ambient purple glow on hover */}
+          <div
+            className="absolute -inset-[1px] rounded-[24px] opacity-30 group-hover:opacity-75 blur-md transition-all duration-500"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(203, 172, 249, 0.45) 0%, rgba(99, 102, 241, 0.2) 50%, rgba(203, 172, 249, 0.35) 100%)",
+            }}
+          />
 
-          {/* Card content */}
-          <div className="relative z-10 w-full h-full rounded-[22px] bg-[rgba(0,3,25,1)] flex flex-col items-center justify-center p-8 m-[2px]"
-               style={{ width: "calc(100% - 4px)", height: "calc(100% - 4px)" }}>
-            {/* Photo with glow ring */}
-            <div className="relative mb-5">
-              <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-[#7b61ff] via-[#00ccb1] to-[#ffc414] opacity-50 group-hover:opacity-80 blur-md transition-opacity duration-500" />
-              <div className="relative w-[160px] h-[160px] rounded-full overflow-hidden ring-2 ring-white/20 group-hover:ring-white/40 transition-all duration-500">
+          {/* Elegant sleek border */}
+          <div
+            className="absolute inset-0 rounded-[24px] p-[1.5px]"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(203, 172, 249, 0.4) 0%, rgba(255, 255, 255, 0.08) 40%, rgba(99, 102, 241, 0.25) 75%, rgba(203, 172, 249, 0.35) 100%)",
+            }}
+          >
+            {/* Card inner content */}
+            <div
+              className="relative z-10 w-full h-full rounded-[22.5px] flex flex-col items-center justify-center p-7 overflow-hidden"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(6, 9, 31, 0.98) 0%, rgba(0, 3, 25, 0.99) 100%)",
+              }}
+            >
+              {/* Soft spotlight accent at top */}
+              <div
+                className="absolute -top-16 left-1/2 -translate-x-1/2 w-44 h-36 rounded-full pointer-events-none opacity-20 group-hover:opacity-35 transition-opacity duration-500 blur-2xl"
+                style={{ background: "#CBACF9" }}
+              />
+
+              {/* Photo with refined ring */}
+              <div className="relative mb-5">
+                <div className="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-[#CBACF9]/30 to-[#6366F1]/20 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500" />
+                <div className="relative w-[155px] h-[155px] rounded-full overflow-hidden ring-1 ring-white/15 group-hover:ring-[#CBACF9]/50 transition-all duration-500 shadow-2xl">
+                  <Image
+                    src={image}
+                    alt={name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* Name */}
+              <h3 className="text-xl font-semibold text-neutral-100 mb-2 text-center">
+                {name}
+              </h3>
+
+              {/* Designation badge */}
+              <span className="inline-block rounded-full px-4 py-1.5 text-xs font-medium tracking-wide bg-[#CBACF9]/10 text-[#CBACF9] border border-[#CBACF9]/25 mb-4 shadow-[0_0_15px_rgba(203,172,249,0.06)]">
+                {designation}
+              </span>
+
+              {/* Tap hint */}
+              <div className="flex items-center gap-1.5 text-xs text-[#BEC1DD]/50 mt-auto group-hover:text-[#CBACF9] transition-colors duration-300">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M15 15l-2 5L9 9l11 4-5 2z" />
+                </svg>
+                <span className="text-[11px] font-medium tracking-wide">Click to know more</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ===== BACK FACE ===== */}
+        <div
+          className="absolute inset-0 rounded-[24px] overflow-hidden"
+          style={{
+            backfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
+          }}
+        >
+          {/* Subtle ambient purple glow on hover */}
+          <div
+            className="absolute -inset-[1px] rounded-[24px] opacity-30 group-hover:opacity-75 blur-md transition-all duration-500"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(203, 172, 249, 0.45) 0%, rgba(99, 102, 241, 0.2) 50%, rgba(203, 172, 249, 0.35) 100%)",
+            }}
+          />
+
+          {/* Elegant sleek border */}
+          <div
+            className="absolute inset-0 rounded-[24px] p-[1.5px]"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(203, 172, 249, 0.4) 0%, rgba(255, 255, 255, 0.08) 40%, rgba(99, 102, 241, 0.25) 75%, rgba(203, 172, 249, 0.35) 100%)",
+            }}
+          >
+            {/* Card inner content */}
+            <div
+              className="relative z-10 w-full h-full rounded-[22.5px] flex flex-col items-center justify-center p-7 overflow-hidden"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(6, 9, 31, 0.98) 0%, rgba(0, 3, 25, 0.99) 100%)",
+              }}
+            >
+              {/* Soft spotlight accent at top */}
+              <div
+                className="absolute -top-16 left-1/2 -translate-x-1/2 w-44 h-36 rounded-full pointer-events-none opacity-20 group-hover:opacity-35 transition-opacity duration-500 blur-2xl"
+                style={{ background: "#CBACF9" }}
+              />
+
+              {/* Small photo */}
+              <div className="relative w-[68px] h-[68px] rounded-full overflow-hidden ring-1 ring-[#CBACF9]/30 mb-3.5 shadow-lg">
                 <Image
                   src={image}
                   alt={name}
@@ -89,109 +179,41 @@ const FlipCard = ({
                   className="object-cover"
                 />
               </div>
-            </div>
 
-            {/* Name */}
-            <h3 className="text-xl font-semibold text-neutral-100 mb-2 text-center">
-              {name}
-            </h3>
+              {/* Name */}
+              <h3 className="text-lg font-semibold text-neutral-100 mb-1 text-center">
+                {name}
+              </h3>
 
-            {/* Designation badge */}
-            <span className="inline-block rounded-full px-5 py-1.5 text-sm font-medium bg-gradient-to-r from-[#7b61ff]/20 to-[#00ccb1]/20 text-[#CBACF9] border border-[#7b61ff]/30 mb-4">
-              {designation}
-            </span>
+              {/* Designation */}
+              <span className="text-xs font-medium text-[#CBACF9] mb-4">
+                {designation}
+              </span>
 
-            {/* Tap hint */}
-            <div className="flex items-center gap-1.5 text-xs text-neutral-500 mt-auto group-hover:text-neutral-300 transition-colors duration-300">
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M15 15l-2 5L9 9l11 4-5 2z" />
-              </svg>
-              <span>Click to know more</span>
-            </div>
-          </div>
-        </div>
+              {/* Divider */}
+              <div className="w-12 h-[2px] bg-gradient-to-r from-transparent via-[#CBACF9]/60 to-transparent rounded-full mb-4" />
 
-        {/* ===== BACK FACE ===== */}
-        <div
-          className="absolute inset-0 rounded-[22px] overflow-hidden"
-          style={{
-            backfaceVisibility: "hidden",
-            transform: "rotateY(180deg)",
-          }}
-        >
-          {/* Animated gradient border */}
-          <div className="absolute inset-0 rounded-[22px] p-[2px]">
-            <div
-              className="absolute inset-0 rounded-[22px] opacity-60 group-hover:opacity-100 blur-xl transition-opacity duration-500"
-              style={{
-                background:
-                  "radial-gradient(circle farthest-side at 0 100%, #00ccb1, transparent), radial-gradient(circle farthest-side at 100% 0, #7b61ff, transparent), radial-gradient(circle farthest-side at 100% 100%, #ffc414, transparent), radial-gradient(circle farthest-side at 0 0, #1ca0fb, #141316)",
-              }}
-            />
-            <div
-              className="absolute inset-0 rounded-[22px]"
-              style={{
-                background:
-                  "radial-gradient(circle farthest-side at 0 100%, #00ccb1, transparent), radial-gradient(circle farthest-side at 100% 0, #7b61ff, transparent), radial-gradient(circle farthest-side at 100% 100%, #ffc414, transparent), radial-gradient(circle farthest-side at 0 0, #1ca0fb, #141316)",
-              }}
-            />
-          </div>
+              {/* Description */}
+              <p className="text-xs text-[#BEC1DD] text-center leading-relaxed font-light">
+                {description}
+              </p>
 
-          {/* Card content */}
-          <div className="relative z-10 w-full h-full rounded-[22px] bg-[rgba(0,3,25,1)] flex flex-col items-center justify-center p-8 m-[2px]"
-               style={{ width: "calc(100% - 4px)", height: "calc(100% - 4px)" }}>
-            {/* Small photo */}
-            <div className="relative w-[70px] h-[70px] rounded-full overflow-hidden ring-2 ring-[#7b61ff]/40 mb-4">
-              <Image
-                src={image}
-                alt={name}
-                fill
-                className="object-cover"
-              />
-            </div>
-
-            {/* Name */}
-            <h3 className="text-lg font-semibold text-neutral-100 mb-1 text-center">
-              {name}
-            </h3>
-
-            {/* Designation */}
-            <span className="text-xs font-medium text-[#CBACF9] mb-5">
-              {designation}
-            </span>
-
-            {/* Divider */}
-            <div className="w-12 h-[2px] bg-gradient-to-r from-[#7b61ff] to-[#00ccb1] rounded-full mb-5" />
-
-            {/* Description */}
-            <p className="text-sm text-neutral-400 text-center leading-relaxed">
-              {description}
-            </p>
-
-            {/* Tap hint */}
-            <div className="flex items-center gap-1.5 text-xs text-neutral-500 mt-auto pt-4 group-hover:text-neutral-300 transition-colors duration-300">
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <polyline points="15 18 9 12 15 6" />
-              </svg>
-              <span>Click to go back</span>
+              {/* Tap hint */}
+              <div className="flex items-center gap-1.5 text-xs text-[#BEC1DD]/50 mt-auto pt-3 group-hover:text-[#CBACF9] transition-colors duration-300">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+                <span className="text-[11px] font-medium tracking-wide">Click to go back</span>
+              </div>
             </div>
           </div>
         </div>
