@@ -42,9 +42,10 @@ const FlipCard = ({
 
   return (
     <div
-      className="relative w-[320px] h-[430px] cursor-pointer group"
+      className="relative w-[320px] h-[430px] group"
       style={{ perspective: "1200px" }}
-      onClick={() => setIsFlipped(!isFlipped)}
+      onMouseEnter={() => setIsFlipped(true)}
+      onMouseLeave={() => setIsFlipped(false)}
     >
       <motion.div
         className="relative w-full h-full"
@@ -55,7 +56,10 @@ const FlipCard = ({
         {/* ===== FRONT FACE ===== */}
         <div
           className="absolute inset-0 rounded-[24px] overflow-hidden"
-          style={{ backfaceVisibility: "hidden" }}
+          style={{
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+          }}
         >
           {/* Subtle ambient purple glow on hover */}
           <div
@@ -76,7 +80,7 @@ const FlipCard = ({
           >
             {/* Card inner content */}
             <div
-              className="relative z-10 w-full h-full rounded-[22.5px] flex flex-col items-center justify-center p-7 overflow-hidden"
+              className="relative z-10 w-full h-full rounded-[22.5px] flex flex-col items-center justify-center p-8 overflow-hidden"
               style={{
                 background:
                   "linear-gradient(180deg, rgba(6, 9, 31, 0.98) 0%, rgba(0, 3, 25, 0.99) 100%)",
@@ -89,9 +93,9 @@ const FlipCard = ({
               />
 
               {/* Photo with refined ring */}
-              <div className="relative mb-5">
+              <div className="relative mb-6">
                 <div className="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-[#CBACF9]/30 to-[#6366F1]/20 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500" />
-                <div className="relative w-[155px] h-[155px] rounded-full overflow-hidden ring-1 ring-white/15 group-hover:ring-[#CBACF9]/50 transition-all duration-500 shadow-2xl">
+                <div className="relative w-[160px] h-[160px] rounded-full overflow-hidden ring-1 ring-white/15 group-hover:ring-[#CBACF9]/50 transition-all duration-500 shadow-2xl">
                   <Image
                     src={image}
                     alt={name}
@@ -107,26 +111,9 @@ const FlipCard = ({
               </h3>
 
               {/* Designation badge */}
-              <span className="inline-block rounded-full px-4 py-1.5 text-xs font-medium tracking-wide bg-[#CBACF9]/10 text-[#CBACF9] border border-[#CBACF9]/25 mb-4 shadow-[0_0_15px_rgba(203,172,249,0.06)]">
+              <span className="inline-block rounded-full px-4 py-1.5 text-xs font-medium tracking-wide bg-[#CBACF9]/10 text-[#CBACF9] border border-[#CBACF9]/25 shadow-[0_0_15px_rgba(203,172,249,0.06)]">
                 {designation}
               </span>
-
-              {/* Tap hint */}
-              <div className="flex items-center gap-1.5 text-xs text-[#BEC1DD]/50 mt-auto group-hover:text-[#CBACF9] transition-colors duration-300">
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M15 15l-2 5L9 9l11 4-5 2z" />
-                </svg>
-                <span className="text-[11px] font-medium tracking-wide">Click to know more</span>
-              </div>
             </div>
           </div>
         </div>
@@ -136,6 +123,7 @@ const FlipCard = ({
           className="absolute inset-0 rounded-[24px] overflow-hidden"
           style={{
             backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
           }}
         >
@@ -158,7 +146,7 @@ const FlipCard = ({
           >
             {/* Card inner content */}
             <div
-              className="relative z-10 w-full h-full rounded-[22.5px] flex flex-col items-center justify-center p-7 overflow-hidden"
+              className="relative z-10 w-full h-full rounded-[22.5px] flex flex-col items-center justify-center p-8 overflow-hidden"
               style={{
                 background:
                   "linear-gradient(180deg, rgba(6, 9, 31, 0.98) 0%, rgba(0, 3, 25, 0.99) 100%)",
@@ -171,7 +159,7 @@ const FlipCard = ({
               />
 
               {/* Small photo */}
-              <div className="relative w-[68px] h-[68px] rounded-full overflow-hidden ring-1 ring-[#CBACF9]/30 mb-3.5 shadow-lg">
+              <div className="relative w-[72px] h-[72px] rounded-full overflow-hidden ring-1 ring-[#CBACF9]/30 mb-3.5 shadow-lg">
                 <Image
                   src={image}
                   alt={name}
@@ -197,23 +185,6 @@ const FlipCard = ({
               <p className="text-xs text-[#BEC1DD] text-center leading-relaxed font-light">
                 {description}
               </p>
-
-              {/* Tap hint */}
-              <div className="flex items-center gap-1.5 text-xs text-[#BEC1DD]/50 mt-auto pt-3 group-hover:text-[#CBACF9] transition-colors duration-300">
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <polyline points="15 18 9 12 15 6" />
-                </svg>
-                <span className="text-[11px] font-medium tracking-wide">Click to go back</span>
-              </div>
             </div>
           </div>
         </div>
