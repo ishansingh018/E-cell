@@ -62,20 +62,16 @@ export const projects = [
 export const socialMedia = [
   {
     id: 1,
-    img: "/git.svg",
-  },
-  {
-    id: 2,
-    img: "/twit.svg",
+    img: "/x.svg",
     link: "https://x.com/ecell_ietlko",
   },
   {
-    id: 3,
+    id: 2,
     img: "/link.svg",
     link: "https://www.linkedin.com/company/ecell-ietlucknow/home/",
   },
   {
-    id: 4,
+    id: 3,
     img: "/instag.svg",
     link: "https://www.instagram.com/ecell_iet_lko/",
   },
