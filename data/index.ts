@@ -67,13 +67,16 @@ export const socialMedia = [
   {
     id: 2,
     img: "/twit.svg",
+    link: "https://x.com/ecell_ietlko",
   },
   {
     id: 3,
     img: "/link.svg",
+    link: "https://www.linkedin.com/company/ecell-ietlucknow/home/",
   },
   {
-    id:4,
-    img:"/instag.svg",
+    id: 4,
+    img: "/instag.svg",
+    link: "https://www.instagram.com/ecell_iet_lko/",
   },
 ];
